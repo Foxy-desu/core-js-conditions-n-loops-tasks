@@ -133,8 +133,59 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  const stringifiedNum = String(numberStr);
+  let finalRes = '';
+  for (let i = 0; i <= stringifiedNum.length - 1; i += 1) {
+    switch (stringifiedNum[i]) {
+      case '1':
+        finalRes += 'one';
+        break;
+      case '2':
+        finalRes += 'two';
+        break;
+      case '3':
+        finalRes += 'three';
+        break;
+      case '4':
+        finalRes += 'four';
+        break;
+      case '5':
+        finalRes += 'five';
+        break;
+      case '6':
+        finalRes += 'six';
+        break;
+      case '7':
+        finalRes += 'seven';
+        break;
+      case '8':
+        finalRes += 'eight';
+        break;
+      case '9':
+        finalRes += 'nine';
+        break;
+      case '0':
+        finalRes += 'zero';
+        break;
+      case '-':
+        finalRes += 'minus';
+        break;
+      case '.':
+        finalRes += 'point';
+        break;
+      case ',':
+        finalRes += 'point';
+        break;
+      default:
+        break;
+    }
+    if (i !== stringifiedNum.length - 1) {
+      finalRes += ' ';
+    }
+  }
+
+  return finalRes;
 }
 
 /**
@@ -149,8 +200,12 @@ function convertNumberToString(/* numberStr */) {
  *  '0123210'   => true
  *  'qweqwe'    => false
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  const half = Math.ceil(str.length / 2);
+  for (let i = 0; i <= half; i += 1) {
+    if (str[i] !== str[str.length - 1 - i]) return false;
+  }
+  return true;
 }
 
 /**
@@ -253,8 +308,23 @@ function getSpiralMatrix(/* size */) {
  *    [7, 8, 9]         [9, 6, 3]
  *  ]                 ]
  */
-function rotateMatrix(/* matrix */) {
-  throw new Error('Not implemented');
+function rotateMatrix(matrix) {
+  const x = matrix;
+  let newX = [];
+  let xLine = [];
+  for (let i = x.length - 1; i >= 0; i -= 1) {
+    for (let j = 0; j <= x[i].length - 1; j += 1) {
+      xLine = [x[j][i], ...xLine];
+    }
+    newX = [xLine, ...newX];
+    xLine = [];
+  }
+
+  for (let i = 0; i <= x.length - 1; i += 1) {
+    x[i] = newX[i];
+  }
+
+  return x;
 }
 
 /**
